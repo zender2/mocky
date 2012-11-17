@@ -1,0 +1,8 @@
+<?php
+/**
+ * Mocky
+ */
+class Mocky
+{
+
+}
