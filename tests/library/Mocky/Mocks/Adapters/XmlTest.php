@@ -3,7 +3,8 @@
  * Test Core adapter
  */
 require_once('Mocky/Mocks/Adapters/Xml.php');
-class Test_Mocky_Mock_Adapter_Core extends BaseTestCase
+require_once('Mocks/User.php');
+class Test_Mocky_Mock_Adapter_Xml extends BaseTestCase
 {
     /**
      * @var Mocky_Mock_Adapter_Xml
@@ -27,7 +28,7 @@ class Test_Mocky_Mock_Adapter_Core extends BaseTestCase
     {
         $this->_target = new Mocky_Mock_Adapter_Xml;
 
-        $this->_data = new stdClass();
+        $this->_data          = new stdClass();
         $this->_data->example = 'test data';
     }
 
@@ -39,6 +40,9 @@ class Test_Mocky_Mock_Adapter_Core extends BaseTestCase
         $this->assertEquals(true, is_object($this->_target));
     }
 
+    /**
+     * Test load data
+     */
     public function testLoadData()
     {
         // set file
@@ -48,6 +52,16 @@ class Test_Mocky_Mock_Adapter_Core extends BaseTestCase
         // load file
         $response = $this->_target->loadData();
         $this->assertEquals(true, $response instanceof Mocky_Mock_Adapter_Xml);
+
+        // get data & check for correct type & no data loss
+        $data = $this->_target->getData();
+        $mock = new Test_Mock_User();
+        $user = $mock->getUser();
+
+        foreach ($user->user as $k=>$v) {
+            $this->assertEquals($data->user->{$k}, $v);
+        }
     }
+
 
 }

@@ -14,7 +14,7 @@ interface Mocky_Mock_Adapter_Interface
      * @param  stdClass
      * @return Mocky_Mock_Adapter_Interface
      */
-    public function setData(stdClass $data);
+    public function setData($data);
 
     /**
      * @return Mocky_Mock_File

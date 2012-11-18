@@ -30,11 +30,11 @@ abstract class Mocky_Mock_Adapter_Core
     }
 
     /**
-     * @param stdClass $data
+     * @param $data
      *
      * @return Mocky_Mock_Adapter_Interface
      */
-    public function setData(stdClass $data)
+    public function setData($data)
     {
         $this->_data = $data;
         return $this;
