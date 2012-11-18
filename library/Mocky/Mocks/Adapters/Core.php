@@ -24,7 +24,8 @@ abstract class Mocky_Mock_Adapter_Core
     {
         if (empty($this->_data)) {
             require_once('Mocky/Mocks/Adapters/Exceptions/NoData.php');
-            throw new Mocky_Mock_Adapter_Exception_NoData('Must set data first, use $adapter->setData($data)');
+            throw new Mocky_Mock_Adapter_Exception_NoData('Must set data first, use $adapter->setData($data) or
+            $adapter->loadData()');
         }
         return $this->_data;
     }
@@ -63,6 +64,18 @@ abstract class Mocky_Mock_Adapter_Core
     {
         $this->_file = (string) $file;
         return $this;
+    }
+
+    /**
+     * Is valid, if data loaded then must be valid
+     *
+     * @return bool
+     */
+    public function isValid()
+    {
+        if (!empty($this->_data)) {
+            return true;
+        }
     }
 
 

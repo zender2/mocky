@@ -95,4 +95,28 @@ class Test_Mocky_Mock_Adapter_Core extends BaseTestCase
         $this->fail('No Exception thrown. Expecting \'Mocky_Mock_Adapter_Exception_NoFile\'');
     }
 
+    /**
+     * Test is valid is true
+     */
+    public function testIsValidTrue()
+    {
+        // set data
+        $response = $this->_target->setData($this->_data);
+        $this->assertEquals(true, $response instanceof Mocky_Mock_Adapter_Xml);
+
+        // get data
+        $response = $this->_target->isValid();
+        $this->assertEquals(true, $response);
+    }
+
+    /**
+     * Test is valid is false
+     */
+    public function testIsValidFalse()
+    {
+        // get data
+        $response = $this->_target->isValid();
+        $this->assertEquals(false, $response);
+    }
+
 }
